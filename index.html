@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="Tabs">
+            <button class="Tablinks" onclick="Tabs(event, 'Todo_list')">Todo App</button>
+            <button class="Tablinks" onclick="Tabs(event, 'Calculator')">Calculator</button>
+        </div>
+        <div id="Todo_list" class="tabcontent">
+            <header>
+                <input type="text" placeholder="Add a New Task" id="input">
+                <button onclick="CreateTask()" id="btn">Add task</button>
+            </header>
+            <ul id="taskBox"></ul>
+        </div>
+        <div id="Calculator" class="tabcontent">
+            <div id="calculateDiv">
+                <input type="text" placeholder="Add a number" id="calculatorInput">
+            <input type="text" placeholder="Add a number" id="calculatorInput2">
+            <button onclick="add()">+</button>
+            <button onclick="substract()">-</button>
+            <button onclick="multiple()">*</button>
+            <button onclick="divide()">/</button>
+            <div>Result : </div>
+            </div>
+        </div>
+    </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
