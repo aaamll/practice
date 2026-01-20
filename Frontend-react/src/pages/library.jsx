@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../co
 
 export default function LibraryPage() {
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-5xl mx-auto space-y-8">
       <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
         <CardContent>
           <p className="text-sm text-gray-300">Here content will be decided soon</p>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, MapPin, MessageSquare } from "lucide-react";
+import { Mail, MapPin, MessageSquare} from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ const COMMUNITY_USERS = [
 // 2. Reusable User Card Component
 const UserCard = ({ user }) => {
   return (
-    <Card className="relative pt-12 mx-auto w-1/2 bg-white/5 border-white/10 text-white backdrop-blur-sm overflow-visible transition-all hover:border-white/20">
+    <Card className="relative pt-12 mx-auto w-full  bg-white/5 border-white/10 text-white backdrop-blur-sm overflow-visible transition-all hover:border-white/20">
       {/* Centered Profile Image - Absolute positioning for the "top-center" look */}
       <div className="absolute -top-10 left-1/2 -translate-x-1/2">
         <Avatar className="h-20 w-20 border-4 border-[#0a0a0a] shadow-xl">
@@ -74,9 +74,11 @@ const UserCard = ({ user }) => {
 // 3. Main Community Page Component
 export default function CommunityPage() {
   return (
-    <div className="p-6 md:p-12 mx-auto">
-      <div className="mb-12">
-        <h1 className="text-3xl font-bold text-white mb-2">Community Feed</h1>
+    <div className="p-6 max-w-5xl mx-auto space-y-8">
+      <div className="mb-12 text-center items-center">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          <CommunityPage/> Community Feed
+          </h1>
         <p className="text-gray-400">Connect with other members in the community.</p>
       </div>
 

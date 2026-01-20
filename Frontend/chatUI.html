@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reusable Chatbot component</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="chat-box"></div>
+        <input type="text" id="chat-input" placeholder="Enter your message..">
+        <button id="chat-btn" onclick="sendChat()">Send</button>
+    </div>
+    <script>
+        // Overall logic for this app => 
+        // user enters data as input(string) and click send button
+        // On frontend : a func run which makes  user's data (string) to lowercase ✅ and correct grammers/spelling with grammerly if needed
+        // then it sends this refined string as POST/ request to backend ✅
+        // On backend : user's data get tokenizes into substrings 
+        // then it predicts the response using knowledge base (google sheet data)
+        //if backend code gets a valid/related data from knowledge base then generate a answer otherwise send apology to frontend
+
+        let chatbox = document.getElementsByClassName("chat-box");
+        let chatInput = document.getElementById("chat-input");
+        let chatButton = document.getElementById("chat-btn");
+
+        async function sendChat(){
+            let chat = chatInput.value.toLowerCase()  //skipping grammer correction logic
+            try{
+                const response = await fetch('http://localhost:3000/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: chat })
+            });
+            const data = await response.json();
+            }
+            catch{
+                alert("API fails ")
+            }
+        } //this is a async function which depends on url data otherwise error .
+
+
+    </script>
+</body>
+
+</html>

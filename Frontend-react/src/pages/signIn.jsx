@@ -18,7 +18,7 @@ function LoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center  overflow-hidden">
       <AuthForm
         title="Login"
         description="Enter your credentials to access your dashboard"

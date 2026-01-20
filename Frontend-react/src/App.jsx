@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />}>
-          <Route index element={<div className="p-6"><h2 className="text-2xl font-bold">Dashboard Overview</h2><p className="text-gray-300">Select a module from the sidebar.</p></div>} />
+          {/* <Route index element={<div className="p-6"><h2 className="text-2xl font-bold">Dashboard Overview</h2><p className="text-gray-300">Select a module from the sidebar.</p></div>} /> */}
           <Route path="profile" element={<ProfilePage />} />
           <Route path="library" element={<LibraryPage />} />
           <Route path="nutrition" element={<NutritionPage />} />

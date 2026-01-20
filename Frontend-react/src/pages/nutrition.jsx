@@ -41,14 +41,14 @@ export default function NutritionPage() {
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-8">
       {/* Header Section */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-center items-center justify-center">
         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
           <Sparkles className="text-blue-500" /> Nutrition AI
         </h1>
         <p className="text-gray-400">Get personalized meal plans based on your fitness goals and biometrics.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="block gap-8">
         {/* Left: Input Preferences */}
         <div className="lg:col-span-1 space-y-6">
           <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
