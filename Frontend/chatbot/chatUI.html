@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reusable Chatbot component</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="w-full  max-w-md bg-white rounded-xl shadow-lg p-4 space-y-4">
+            <h2 class="text-lg font-semibold text-gray-700 text-center">
+                AI Chatbot
+            </h2>
+
+            <div class="chat-box h-[500px] overflow-y-auto border rounded-lg p-3 bg-gray-50 gap-4 text-sm text-gray-700"
+                id="chat-box">
+                <!-- messages -->
+            </div>
+            <div class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="Enter your message..."
+                    class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <button id="chat-btn" onclick="sendChat()"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    Send
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Overall logic for this app => 
+        // // user enters data as input(string) and click send button 
+        // // On frontend : a func run which makes user's data (string) to lowercase ✅ and correct grammers/spelling with grammerly if needed 
+        // // then it sends this refined string as POST/ request to backend ✅ 
+        // // On backend : server.js receives string ✅ 
+        // // user's data get tokenizes into substrings  ✅ ( using node-nlp)
+        // // then it predicts the response using knowledge base (google sheet data) 
+        // //if backend code gets a valid/related data from knowledge base then generate a answer otherwise send apology to frontend
+
+
+        let chatbox = document.getElementById("chat-box");
+        let chatInput = document.getElementById("chat-input");
+
+        async function sendChat() {
+            let chat = chatInput.value.toLowerCase();
+            if (!chat) {
+                alert("Input is empty");
+                return;
+            }
+
+            // Show user's message in chat-box (blue)
+            const userMsg = document.createElement('div');
+            userMsg.textContent = chat;
+            userMsg.className = "text-white bg-blue-600 px-3 py-1 rounded-lg my-5 self-end w-max max-w-[80%]";
+            chatbox.appendChild(userMsg);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            try {
+                const response = await fetch('http://localhost:4000/api/chatbot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: chat })
+                });
+                const data = await response.json();
+
+                // Show bot reply in chat-box (gray)
+                const botMsg = document.createElement('div');
+                botMsg.textContent = data.reply || "Sorry, I didn't understand that 🤔";
+                botMsg.className = "text-gray-800 bg-gray-200 px-3 py-1 rounded-lg mb-2 self-start w-max max-w-[80%]";
+                chatbox.appendChild(botMsg);
+                chatbox.scrollTop = chatbox.scrollHeight;
+
+            } catch (err) {
+                alert("API fails");
+            }
+
+            chatInput.value = '';
+        }
+    </script>
+</body>
+
+</html>
